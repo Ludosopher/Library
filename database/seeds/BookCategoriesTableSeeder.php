@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class BookCategoriesTableSeeder extends Seeder
 {
@@ -16,27 +17,27 @@ class BookCategoriesTableSeeder extends Seeder
             [
                 'id' => 1,
                 'title' => 'Научная фантастика',
-                'slug' => 'science-fiction',
+                'slug' => Str::slug('Научная фантастика', '_'),
             ],
             [
                 'id' => 2,
                 'title' => 'Фэнтези',
-                'slug' => 'fantasy',
+                'slug' => Str::slug('Фэнтези', '_'),
             ],
             [
                 'id' => 3,
                 'title' => 'Романы',
-                'slug' => 'novels',
+                'slug' => Str::slug('Романы', '_'),
             ],
             [
                 'id' => 4,
                 'title' => 'Историческая',
-                'slug' => 'Historical',
+                'slug' => Str::slug('Историческая', '_'),
             ],
             [
                 'id' => 5,
                 'title' => 'Детективы',
-                'slug' => 'detectives',
+                'slug' => Str::slug('Детективы', '_'),
             ],
         ]);
     }

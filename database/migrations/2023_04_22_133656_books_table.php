@@ -16,7 +16,7 @@ class BooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('author');
             $table->text('description');
             $table->unsignedBigInteger('category_id');

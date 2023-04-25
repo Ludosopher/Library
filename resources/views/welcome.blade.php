@@ -9,7 +9,12 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+
         <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
         <style>
             html, body {
                 background-color: #fff;
@@ -64,6 +69,16 @@
         </style>
     </head>
     <body>
+        <div class="container">
+            @if (\Session::has('response'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ \Session::get('response') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+        </div>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -78,7 +93,6 @@
                     @endauth
                 </div>
             @endif
-
             <div class="content">
                 <div class="title m-b-md">
                     Laravel

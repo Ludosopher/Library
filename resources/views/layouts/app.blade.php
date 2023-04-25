@@ -33,6 +33,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle main-nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Книги
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="nav-link" href="{{ route('books') }}">Список</a>
+                                @if (Auth::check() && (Auth::user()->is_admin || Auth::user()->is_moderator))
+                                    <a class="nav-link" href="{{ route('book-form') }}">Добавить</a>
+                                @endif
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle main-nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Категории книг
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="nav-link" href="{{ route('categories') }}">Список</a>
+                                @if (Auth::check() && (Auth::user()->is_admin || Auth::user()->is_moderator))
+                                    <a class="nav-link" href="{{ route('category-form') }}">Добавить</a>
+                                @endif
+                            </div>
+                        </li>
 
                     </ul>
 
