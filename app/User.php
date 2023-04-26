@@ -2,9 +2,12 @@
 
 namespace App;
 
+use App\Notifications\UserReg;
+use App\Notifications\UserRegistration;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Notification;
 
 class User extends Authenticatable
 {
@@ -36,4 +39,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+
+        });
+
+        static::created(function ($user) {
+            $user->notify(new UserReg($user));
+        });
+
+        static::updating(function ($user) {
+            
+        });
+
+        static::updated(function ($user) {
+            
+        });
+    }
 }
