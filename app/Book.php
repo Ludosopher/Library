@@ -10,6 +10,8 @@ class Book extends Model
     {
         return 'slug';
     }
+
+    protected $fillable = ['title', 'author', 'slug', 'description', 'category_id'];
     
     public function category()
     {

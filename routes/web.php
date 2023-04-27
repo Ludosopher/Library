@@ -31,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/book/add', 'BookController@addBook')->name('book-add');
     Route::get('/book/delete/{slug}', 'BookController@deleteBook')->name('book-delete');
     Route::post('/book/comments/add', 'BookController@addBookComment')->name('book-comment-add');
+    Route::get('/book/import/get-form', 'BookController@getImportForm')->name('book-import-form');
+    Route::post('/book/import/xls', 'BookController@XlsBooksImport')->name('book-import-xls');
 
     Route::match(['get', 'post'], '/category/get-all', 'CategoryController@getCategories')->name('categories');
     Route::get('/category/get-one/{slug}', 'CategoryController@showCategory')->name('category');

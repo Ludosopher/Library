@@ -10,10 +10,13 @@ use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\GetBooksRequest;
 use App\Http\Requests\ShowBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Http\Requests\XlsBooksImportRequest;
+use App\Imports\BooksImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BookController extends Controller
 {
@@ -67,5 +70,21 @@ class BookController extends Controller
         BookHelpers::addBookComment($request->validated());
         
         return redirect()->back()->with('response', "Комментарий успешно добавлен.");
+    }
+
+    public function getImportForm()
+    {
+        return view("book.import_form");    
+    }
+
+    public function XlsBooksImport(XlsBooksImportRequest $request)
+    {
+        $request->validated();
+
+        $categories = BookCategory::pluck('title', 'id');
+
+        Excel::import(new BooksImport($categories), request()->file('xls_file'));
+        
+        return redirect()->route('home')->with('response', "Данные книг успешно импортированы из XLS-файла.");
     }
 }

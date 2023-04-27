@@ -31,8 +31,8 @@ class BookCategoriesTableSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'title' => 'Историческая',
-                'slug' => Str::slug('Историческая', '_'),
+                'title' => 'Историческое',
+                'slug' => Str::slug('Историческое', '_'),
             ],
             [
                 'id' => 5,
