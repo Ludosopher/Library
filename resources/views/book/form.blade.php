@@ -29,7 +29,8 @@
                 <label style="margin-top: 30px;" for="author">Автор</label>
                 <input class="form-control" type="text" name="author" value="{{ $data['book']->author ?? (old('author') ?? '') }}">
                 <label style="margin-top: 30px;" for="description">Описание</label>
-                <input class="form-control" type="text" name="description" value="{{ $data['book']->description ?? (old('description') ?? '') }}">
+                {{-- <input class="form-control" type="text" name="description" value="{{ $data['book']->description ?? (old('description') ?? '') }}"> --}}
+                <textarea class="form-control" id="description" name="description" rows="3">{{ $data['book']->description ?? (old('description') ?? '') }}</textarea>
                 <label style="margin-top: 30px;" for="inputState">Категория</label>
                 <select id="inputState" name="category_id" class="form-control">
                     @foreach($data['categories'] as $category)

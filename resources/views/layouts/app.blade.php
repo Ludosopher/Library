@@ -39,9 +39,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="nav-link" href="{{ route('books') }}">Список</a>
-                                @if (Auth::check() && (Auth::user()->is_admin || Auth::user()->is_moderator))
-                                    <a class="nav-link" href="{{ route('book-form') }}">Добавить</a>
-                                @endif
+                                <a class="nav-link" href="{{ route('book-form') }}">Добавить</a>
                             </div>
                         </li>
 

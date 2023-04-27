@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Book;
 use App\BookCategory;
+use App\BookComment;
 use App\Http\Requests\UpdateBookRequest;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
@@ -96,6 +97,33 @@ class BookHelpers
         }
 
         return $data;
+    }
+
+    public static function showBook($slug, $user_id)
+    {
+        $book = Book::with(['category', 'comments.user'])
+                     ->where('slug', $slug)
+                     ->first();
+        
+        return [
+            'book' => $book,
+            'user_id' => $user_id
+        ];
+    }
+
+    public static function addBookComment($data)
+    {
+        $comment = new BookComment();
+
+        $db_fields = Schema::getColumnListing($comment->getTable());
+
+        foreach ($db_fields as $field) {
+            if (isset($data[$field])) {
+                $comment->$field = $data[$field];
+            }
+        }
+
+        $comment->save();
     }
 
 }

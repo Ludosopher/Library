@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/book/update', 'BookController@updateBook')->name('book-update');
     Route::post('/book/add', 'BookController@addBook')->name('book-add');
     Route::get('/book/delete/{slug}', 'BookController@deleteBook')->name('book-delete');
+    Route::post('/book/comments/add', 'BookController@addBookComment')->name('book-comment-add');
 
     Route::match(['get', 'post'], '/category/get-all', 'CategoryController@getCategories')->name('categories');
     Route::get('/category/get-one/{slug}', 'CategoryController@showCategory')->name('category');
@@ -41,4 +42,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/get-form', 'UserController@getForm')->name('user-form');
     Route::post('/user/update', 'UserController@updateUser')->name('user-update');
     Route::get('/user/delete', 'UserController@deleteUser')->name('user-delete');
+    
 });

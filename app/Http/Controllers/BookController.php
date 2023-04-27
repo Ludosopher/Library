@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\BookCategory;
 use App\Helpers\BookHelpers;
+use App\Http\Requests\AddBookCommentRequest;
 use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\GetBooksRequest;
 use App\Http\Requests\ShowBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
@@ -24,11 +26,9 @@ class BookController extends Controller
 
     public function showBook($slug)
     {
-        $book = Book::with(['category'])
-                     ->where('slug', $slug)
-                     ->first();
-        
-        return view("book.book")->with('book', $book);
+        $data = BookHelpers::showBook($slug, Auth::user()->id);
+
+        return view("book.book")->with('data', $data);
     }
 
     public function getForm($slug = null)
@@ -60,5 +60,12 @@ class BookController extends Controller
         Book::where('slug', $slug)->delete();
 
         return redirect()->route('books')->with('response', "Данные книги '{$deleted->title}' автора {$deleted->author} успешно удалены.");
+    }
+
+    public function addBookComment(AddBookCommentRequest $request)
+    {
+        BookHelpers::addBookComment($request->validated());
+        
+        return redirect()->back()->with('response', "Комментарий успешно добавлен.");
     }
 }
