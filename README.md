@@ -4,6 +4,8 @@
 Приложение разработано на фреймворке Laravel в качестве тестового задания при соискании доолжности PHP-developer(Laravel) в компанию ООО "Медкорт" г. Екатеринбург. 
 **[Здесь размещено задание (28.04.2023)](https://docs.google.com/forms/d/e/1FAIpQLSe2wsvLlznZMphfJJqtYCbKRGIcHOzDuarDMdOhlljCzQ2sAw/viewform)**
 
+## Стек технологий
+PHP 7.2; Laravel 7; Laravel Blade; maatwebsite/excel 3.1; Bootstrap 4; HTML; CSS.  
 
 ## Содержание приложения
 Были выполнены все задания. 
