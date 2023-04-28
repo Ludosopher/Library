@@ -14,9 +14,10 @@ class BookHelpers
     public static function getBooks($data)
     {
         if (count($data) && isset($data['category_id'])) {
+            $appends['category_id'] = $data['category_id'];
             $books = Book::with(['category'])->whereHas('category', function ($query) use ($data) {
                 $query->where('id', $data['category_id']);
-            })->paginate(10);
+            })->paginate(10)->appends($appends);
         } else {
             $books = Book::with(['category'])->paginate(10);
         }

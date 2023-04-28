@@ -25,7 +25,7 @@
                     </div>
                     <div style="display: flex; justify-content: end;">
                         <a class="nav-item nav-link active" href="{{ route('book-form', ['slug' => $book->slug]) }}" style="text-align: end;">Изменить</a>
-                        <a class="nav-item nav-link active" href="{{ route('book-form', ['slug' => $book->slug]) }}" style="text-align: end;">Удалить</a>
+                        <a class="nav-item nav-link active" href="{{ route('book-delete', ['slug' => $book->slug]) }}" style="text-align: end;">Удалить</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,6 @@
                             <form method="POST" action="{{ route('book-comment-add') }}">
                             @csrf
                                 <div class="form-outline mb-4">
-                                    {{-- <input type="text" id="addANote" class="form-control" placeholder="" /> --}}
                                     <textarea class="form-control" id="content" name="content" rows="2" placeholder="Здесь пишите комментарий ..."></textarea>
                                     <input type="hidden" name="user_id" value="{{ $data['user_id'] }}">
                                     <input type="hidden" name="book_id" value="{{ $book->id }}">

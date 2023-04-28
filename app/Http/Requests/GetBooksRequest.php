@@ -23,13 +23,11 @@ class GetBooksRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->method() == 'POST') {
-            return [
-                'category_id' => 'required|integer|exists:App\BookCategory,id',
-            ];
-        } else {
-            return [];
-        }
+        return [
+            'category_id' => 'nullable|integer|exists:App\BookCategory,id',
+            'page' => 'nullable|integer'
+        ];
+
     }
 
     public function response(array $errors)
