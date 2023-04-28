@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('login', 'Api\Auth\LoginController@login');
+
+Route::match(['get', 'post'], 'book/get-all', 'Api\BookController@getBooks')->middleware('api_auth');
+

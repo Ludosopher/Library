@@ -31,4 +31,10 @@ class GetBooksRequest extends FormRequest
             return [];
         }
     }
+
+    public function response(array $errors)
+    {
+        // Always return JSON.
+        return response()->json(['error' => $errors], 400);
+    }
 }

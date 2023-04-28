@@ -27,7 +27,10 @@ class BookHelpers
 
     public static function getBooksViewData($data)
     {
-        request()->flash();
+        if (request()->route()->getPrefix() !== 'api') {
+            request()->flash();
+        }
+         
         return [
             'books' => self::getBooks($data),
             'categories' => BookCategory::all(),
