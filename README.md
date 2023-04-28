@@ -1,61 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Тестовое приложение "Библиотека"
+# Разработчик: Аликин Виктор
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Общая информация
 
-## About Laravel
+Приложение разработано на фреймворке Laravel в качестве тестового задания при соискании доолжности PHP-developer(Laravel) в компанию ООО "Медкорт" г. Екатеринбург. 
+**[Здесь размещено задание (28.04.2023)](https://docs.google.com/forms/d/e/1FAIpQLSe2wsvLlznZMphfJJqtYCbKRGIcHOzDuarDMdOhlljCzQ2sAw/viewform)**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Собержание приложения
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Были выполнены все задания. То есть приложение содержит:
+    
+    - миграции для пользователей, книг, комментариев к книгам и категорий книг;
+    - посев тестовых данных в том числе первого пользователя;
+    - регистрацию и авторизацию пользователей;
+    - отображение общего списка книг или категорий книг с пагинацией;
+    - фильтрацию списка книг по категориям;
+    - добавление, обновление и удаление пользователей, книг или их категорий;
+    - при добавлении или обновлении книг можно загрузить изображение обложки в хранилище (storage/app/public/covers);
+    - домашнюю страницу пользователя;
+    - отображение каждой отдельной книги и каталога;
+    - валидация входящих данных путём создания специальных классов Request;
+    - работа с базой данных исключительно на основе Eloquent ORM (без обычных SQL-запросов);
+    - email уведомления при добавлении нового пользователя в очереди (Job);
+    - возможность читателям оставлять комментарии к книгам;
+    - парсер excel файла с реестром книг в очереди (job) кусками по 100 книг за раз;
+    - API аутентификация и получение json со списком книг определённой категории.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Начало работы
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+После установки приложения запустить:
 
-## Laravel Sponsors
+1. миграции и посев тестовых данных: php artisan migrate:fresh --seed
+2. работу очередей: php artisan queue:work
+3. Можно войти в качестве заранее зарегистрированного пользователя: 
+    Логин: admin@mail.ru
+    Пароль: 1234567890
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+## Email уведомления при добавлении нового пользователя
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+При регистрации нового пользователя укажите реально существующий адрес электронной почты. Сразу после регистрации на него придёт уведомление.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Комментарии к книгам
 
-## Code of Conduct
+Комментарии к книгам можно оставить на странице каждой отдельной книги.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+## Парсинг excel файла с реестром книг
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Для того чтобы выплнить парсинг excel файла с реестром книг в общем меню перейдите: "Книги -> Импорт". Далее выберите на своём компьютере Excel файл со списком книг и нажмите "Импортировать". Затем перейдите: "Книги -> Список" чтобы увидеть добавление новых книг. 
+[Пример Excel файла со списком книг (28.04.2023)](https://docs.google.com/spreadsheets/d/1LpyjeuO9Tz7zN4myiDSt1AVlGn9PFd4l/edit#gid=682307266)
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## API аутентификация и получение списка книг определённой категории по API
+
+1. В Postman добавьте POST-запрос по адресу: http://localhost/medkort_library/public/api/login
+   Тело запроса:
+    {
+      "email": "admin@mail.ru",
+      "password": "1234567890"
+    }
+    В ответе должен быть токен.
+2. В Postman создайте новый POST-запрос по адресу: http://localhost/medkort_library/public/api/book/get-all
+    Тело запроса:
+    {
+        "category_id": 1
+    }
+    В ответе вы должен быть список книг категории "НАучная фантастика".
